@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<MonoRuntimeDebuggerEnabled Condition="'$(Configuration)'=='Debug'">true</MonoRuntimeDebuggerEnabled>
+		<MonoWasmRuntimeConfiguration>threads-release</MonoWasmRuntimeConfiguration>
+		<WasmShellMonoRuntimeExecutionMode>Interpreter</WasmShellMonoRuntimeExecutionMode>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
+		<MonoRuntimeDebuggerEnabled>true</MonoRuntimeDebuggerEnabled>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
+		<DebugType>portable</DebugType>
+		<DebugSymbols>true</DebugSymbols>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
+		<DefineConstants>$(DefineConstants);TRACE;DEBUG</DefineConstants>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Uno.Wasm.Bootstrap" Version="1.2.0" />
+		<PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="1.2.0" PrivateAssets="all" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="WasmScripts\**\*.js" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="WasmScripts\test.js" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<LinkerDescriptor Include="LinkerConfig.xml" />
+	</ItemGroup>
+
+</Project>

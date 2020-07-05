@@ -1,0 +1,7 @@
+﻿<linker>
+	<assembly fullname="Wep.WebAdmin"/>
+
+	<!-- Required for debugging -->
+	<assembly fullname="mscorlib" />
+	<assembly fullname="System.Core" />
+</linker>
