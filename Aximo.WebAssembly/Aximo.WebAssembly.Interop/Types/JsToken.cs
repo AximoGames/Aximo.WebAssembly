@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-namespace WebAssembly
+namespace Aximo.WebAssembly.Interop
 {
     public abstract class JsToken
     {
@@ -12,7 +12,10 @@ namespace WebAssembly
             Type = type;
         }
 
-        internal static JsToken Parse(string handleStr)
+        public bool IsValueType => Type == JsType.Boolean || Type == JsType.String || Type == JsType.Number;
+        public bool IsReferenceType => !IsValueType;
+
+        public static JsToken Parse(string handleStr)
         {
             if (string.IsNullOrEmpty(handleStr))
                 return null;
@@ -26,8 +29,8 @@ namespace WebAssembly
             {
                 case JsType.Array:
                     return new JsArrayReference(handle, int.Parse(ar[2]));
-                case JsType.Element:
-                    return new JsDomReference(handle);
+                //case JsType.Element:
+                //    return new JsDomReference(handle);
                 case JsType.Function:
                     return new JsDelegate(handle);
                 case JsType.Number:
@@ -41,7 +44,7 @@ namespace WebAssembly
             }
         }
 
-        internal static TRef Parse<TRef>(string handleStr)
+        public static TRef Parse<TRef>(string handleStr)
             where TRef : JsToken
         {
             try

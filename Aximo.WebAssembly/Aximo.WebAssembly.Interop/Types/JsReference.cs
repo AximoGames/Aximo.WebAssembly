@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace WebAssembly
+namespace Aximo.WebAssembly.Interop
 {
     public class JsReference : JsToken
     {
@@ -29,12 +29,12 @@ namespace WebAssembly
                 FreeReferences.Add(Handle);
         }
 
-        internal static void ExecFree()
+        public static void FreeHandles() // TODO: Make Internal
         {
             lock (FreeReferences)
             {
                 foreach (var handle in FreeReferences)
-                    Runtime.InvokeJS($"Interop.freeHandle('{handle}')", out _);
+                    Runtime.BaseRuntime.InvokeJS($"Interop.freeHandle('{handle}')", out _);
 
                 FreeReferences.Clear();
             }

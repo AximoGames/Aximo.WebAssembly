@@ -1,11 +1,11 @@
-﻿namespace WebAssembly
+﻿namespace Aximo.WebAssembly.Interop
 {
     public class JsArrayReference : JsReference
     {
 
         public int Length;
 
-        internal JsArrayReference(string handle, int length) : base(handle, JsType.Array)
+        public JsArrayReference(string handle, int length) : base(handle, JsType.Array)
         {
             Length = length;
         }

@@ -6,7 +6,7 @@ define(() => {
 
 var InteropHandles = {};
 var CurrentHandle = 0;
-var __InteropCallback = Module.mono_bind_static_method("[Wep.WebAdmin] WebAssembly.Runtime:Callback");
+var __InteropCallback = Module.mono_bind_static_method("[Aximo.WebAssembly] WebAssembly.Runtime:Callback");
 
 var JsToken = class JsToken {
     constructor(type, value) {

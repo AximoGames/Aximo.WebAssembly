@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-namespace WebAssembly
+namespace Aximo.WebAssembly.Interop.Browser
 {
     public class JsDomReference : JsObject
     {

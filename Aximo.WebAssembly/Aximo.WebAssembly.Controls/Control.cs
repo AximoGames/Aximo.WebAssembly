@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Aximo.WebAssembly.Interop;
+using Aximo.WebAssembly.Interop.Browser;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebAssembly;
 
-namespace Wep.WebAdmin
+namespace Aximo.WebAssembly.Controls
 {
     public class HtmlControl
     {

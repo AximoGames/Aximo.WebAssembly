@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace WebAssembly
+namespace Aximo.WebAssembly.Interop
 {
     public static class JsTokenExtensions
     {
@@ -10,6 +10,7 @@ namespace WebAssembly
                 return "null";
             return token.ToJs();
         }
+
         public static string ToNullableJs(this JsToken[] tokens)
         {
             if (tokens == null)

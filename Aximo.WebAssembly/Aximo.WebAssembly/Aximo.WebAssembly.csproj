@@ -38,4 +38,9 @@
 		<LinkerDescriptor Include="LinkerConfig.xml" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\Aximo.WebAssembly.Interop\Aximo.WebAssembly.Interop.csproj" />
+	  <ProjectReference Include="..\Aximo.WebAssembly.Sample\Aximo.WebAssembly.Sample.csproj" />
+	</ItemGroup>
+
 </Project>

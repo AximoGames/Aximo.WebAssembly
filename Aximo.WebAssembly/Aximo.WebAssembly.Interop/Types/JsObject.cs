@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 
-namespace WebAssembly
+namespace Aximo.WebAssembly.Interop
 {
     public class JsObject : JsReference
     {
 
-        internal JsObject(string handle, JsType type) : base(handle, type)
+        internal protected JsObject(string handle, JsType type) : base(handle, type)
         {
         }
 

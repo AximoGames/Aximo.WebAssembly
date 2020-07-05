@@ -1,4 +1,4 @@
-﻿namespace WebAssembly
+﻿namespace Aximo.WebAssembly.Interop
 {
     public class JsString : JsLiteral
     {

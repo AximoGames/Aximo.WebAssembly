@@ -1,4 +1,4 @@
-﻿namespace WebAssembly
+﻿namespace Aximo.WebAssembly.Interop
 {
     public abstract class JsLiteral : JsToken
     {
