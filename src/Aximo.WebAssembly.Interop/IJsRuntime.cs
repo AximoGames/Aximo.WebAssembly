@@ -8,8 +8,8 @@ namespace Aximo.WebAssembly.Interop
     public interface IJsRuntime
     {
         string InvokeJS(string str);
-        TRef TryCastObject<TRef>(JsToken obj) where TRef : JsToken;
-        TRef CastObject<TRef>(JsToken obj) where TRef : JsToken;
+        TRef TryCastObject<TRef>(object obj);
+        TRef CastObject<TRef>(object obj);
         JsToken GetObject(string code);
         JsToken GetArrayElement(string arrayHandle, int index);
         void SetArrayElement(string arrayHandle, int index, JsToken value);

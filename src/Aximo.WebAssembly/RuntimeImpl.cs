@@ -41,7 +41,6 @@ namespace WebAssembly
         }
 
         public TRef GetObject<TRef>(string code)
-            where TRef : JsToken
         {
             return CastObject<TRef>(GetObject(code));
         }
@@ -129,33 +128,37 @@ namespace WebAssembly
             JsReference.FreeHandles();
         }
 
-        public TRef TryCastObject<TRef>(JsToken obj) where TRef : JsToken
+        public TRef TryCastObject<TRef>(object obj)
         {
             if (obj == null)
                 return default;
 
-            var tryCast = obj as TRef;
-            if (tryCast != null)
+            if (obj is TRef tryCast)
                 return tryCast;
 
-            if (obj.IsReferenceType)
+            tryCast = default;
+
+            var token = obj as JsReference;
+
+            if (token != null)
             {
-                var handle = (obj as JsReference).Handle;
+                var handle = token.Handle;
                 tryCast = Activator.CreateInstance<TRef>();
-                (tryCast as JsReference).Handle = handle;
+                if (tryCast is JsReference outRef)
+                    outRef.Handle = handle;
             }
 
             return tryCast;
         }
 
-        public TRef CastObject<TRef>(JsToken obj) where TRef : JsToken
+        public TRef CastObject<TRef>(object obj)
         {
             if (obj == null)
                 return default;
 
             var tryCast = TryCastObject<TRef>(obj);
             if (tryCast == null)
-                throw new InvalidCastException($"Cannot cast {obj.ToNullableJs()} to {typeof(TRef)}");
+                throw new InvalidCastException($"Cannot cast {obj.GetType()} to {typeof(TRef)}");
 
             return tryCast;
         }
