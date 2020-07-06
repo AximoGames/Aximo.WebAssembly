@@ -30,6 +30,7 @@ namespace Aximo.Blazor
             code = $"Interop.getObject('{code.Replace("'", "\\'")}')";
             Console.WriteLine("GetObject:" + code);
             var reference = InvokeJS(code);
+            Console.WriteLine("GetObject.Result:" + reference);
             return JsToken.Parse(reference);
         }
 

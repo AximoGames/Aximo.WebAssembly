@@ -66,9 +66,20 @@ function RegisterHandleWithType(obj) {
 
 var Interop = {
 
+    appendResult: function (str) {
+        var txt = document.createTextNode(str);
+        var parent = document.getElementById('results');
+        parent.appendChild(txt, parent.lastChild);
+    },
+
     freeHandle: function (str) {
         //console.log(str);
         delete InteropHandles[str];
+    },
+
+    InvokeJs: function (str) {
+        var func = new Function("return ("+ str + ")");
+        return func();
     },
 
     getObject: function (str) {

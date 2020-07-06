@@ -15,8 +15,6 @@ namespace Aximo.Blazor
     public class Program
     {
 
-        private static IJSInProcessRuntime Runtime;
-
         public static async Task Main(string[] args)
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -30,16 +28,19 @@ namespace Aximo.Blazor
 
         public static void Test(IJSInProcessRuntime runtime)
         {
-            Runtime = runtime;
+            Runtime.JsRuntime = runtime;
 
-            var tim = new Timer((e) => test2());
-            tim.Change(TimeSpan.FromSeconds(.1), TimeSpan.FromSeconds(1));
+            //var tim = new Timer((e) => test2());
+            //tim.Change(TimeSpan.FromSeconds(.1), TimeSpan.FromSeconds(1));
+
+            Aximo.WebAssembly.Interop.Runtime.Initialize(new RuntimeImpl());
+            Aximo.WebAssembly.Sample.Class1.Run();
         }
 
         private static void test2()
         {
             var s = "blubbX";
-            Runtime.InvokeVoid("window.console.log", s);
+            Runtime.JsRuntime.InvokeVoid("window.console.log", s);
         }
 
     }
