@@ -12,7 +12,7 @@ namespace Aximo.WebAssembly.Sample
             StartTime = DateTime.Now;
             Console.WriteLine("Hello from C#!");
 
-            Runtime.InvokeJS("Interop.appendResult('dddd')", out _);
+            Runtime.InvokeJS("Interop.appendResult('dddd')");
 
             DomTest();
             var tim = new Timer((e) => Test2());

@@ -16,7 +16,7 @@ namespace Aximo.WebAssembly.Interop
             BaseRuntime = runtime;
         }
 
-        public static string InvokeJS(string code, out int exceptional_result) => BaseRuntime.InvokeJS(code, out exceptional_result);
+        public static string InvokeJS(string code) => BaseRuntime.InvokeJS(code);
         public static JsToken GetObject(string code) => BaseRuntime.GetObject(code);
         public static TRef GetObject<TRef>(string code)
             where TRef : JsToken

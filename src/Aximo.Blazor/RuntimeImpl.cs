@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Data;
 
-namespace WebAssembly
+namespace Aximo.Blazor
 {
     internal class RuntimeImpl : IJsRuntime
     {
@@ -20,14 +20,7 @@ namespace WebAssembly
 
         public string InvokeJS(string str)
         {
-            var result = Runtime.InvokeJS(str, out var exceptional_result);
-            if (exceptional_result != 0)
-            {
-                Console.WriteLine($"Error: {result}");
-                Console.WriteLine($"ErrorCode: {exceptional_result}");
-                throw new Exception(result);
-            }
-            return result;
+            return Runtime.InvokeJS(str);
         }
 
         public JsToken GetObject(string code)
@@ -121,7 +114,7 @@ namespace WebAssembly
 
         public void FreeHandle(string handle)
         {
-            Runtime.InvokeJS($"Interop.freeHandle('{handle}')", out _);
+            Runtime.InvokeJS($"Interop.freeHandle('{handle}')");
         }
 
         public void FreeHandles()

@@ -1,12 +1,8 @@
 ﻿'use strict';
 
-define(() => {
-    document.body.innerHTML = "<div id='results' />";
-});
-
 var InteropHandles = {};
 var CurrentHandle = 0;
-var __InteropCallback = Module.mono_bind_static_method("[Aximo.WebAssembly] WebAssembly.Runtime:Callback");
+//var __InteropCallback = DotNet.invokeMethod;
 
 var JsToken = class JsToken {
     constructor(type, value) {
@@ -70,12 +66,6 @@ function RegisterHandleWithType(obj) {
 
 var Interop = {
 
-    appendResult: function (str) {
-        var txt = document.createTextNode(str);
-        var parent = document.getElementById('results');
-        parent.appendChild(txt, parent.lastChild);
-    },
-
     freeHandle: function (str) {
         //console.log(str);
         delete InteropHandles[str];
@@ -137,7 +127,7 @@ var Interop = {
             const args = Array.from(arguments);
             console.log(args);
             var argsHandle = RegisterHandle(args);
-            __InteropCallback(wasmHandle._value, argsHandle, args.length);
+            DotNet.invokeMethod("WASM", wasmHandle._value, argsHandle, args.length);
         };
         func.__WASM_HANDLE__ = wasmHandle._value;
         return RegisterHandleWithType(func);

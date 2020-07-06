@@ -34,7 +34,7 @@ namespace Aximo.WebAssembly.Interop
             lock (FreeReferences)
             {
                 foreach (var handle in FreeReferences)
-                    Runtime.BaseRuntime.InvokeJS($"Interop.freeHandle('{handle}')", out _);
+                    Runtime.BaseRuntime.InvokeJS($"Interop.freeHandle('{handle}')");
 
                 FreeReferences.Clear();
             }

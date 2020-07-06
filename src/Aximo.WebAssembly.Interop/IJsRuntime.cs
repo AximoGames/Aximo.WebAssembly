@@ -7,7 +7,7 @@ namespace Aximo.WebAssembly.Interop
 
     public interface IJsRuntime
     {
-        string InvokeJS(string str, out int exceptional_result);
+        string InvokeJS(string str);
         TRef TryCastObject<TRef>(JsToken obj) where TRef : JsToken;
         TRef CastObject<TRef>(JsToken obj) where TRef : JsToken;
         JsToken GetObject(string code);
