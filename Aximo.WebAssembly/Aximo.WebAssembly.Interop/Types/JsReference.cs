@@ -4,7 +4,7 @@ namespace Aximo.WebAssembly.Interop
 {
     public class JsReference : JsToken
     {
-        internal string Handle;
+        public string Handle;
 
         internal static List<string> FreeReferences = new List<string>();
 

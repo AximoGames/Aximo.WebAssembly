@@ -31,7 +31,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Remove="WasmScripts\test.js" />
+		<None Remove="WasmScripts\Interop.js" />
 	</ItemGroup>
 
 	<ItemGroup>

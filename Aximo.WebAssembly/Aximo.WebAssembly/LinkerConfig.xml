@@ -1,7 +1,7 @@
 ﻿<linker>
 	<assembly fullname="Aximo.WebAssembly"/>
 	<assembly fullname="Aximo.WebAssembly.Interop"/>
-	<!--<assembly fullname="Aximo.WebAssembly.Interop.Browser"/>-->
+	<assembly fullname="Aximo.WebAssembly.Interop.Browser"/>
 	<assembly fullname="Aximo.WebAssembly.Sample"/>
 	<!--<assembly fullname="Aximo.WebAssembly.Controls"/>-->
 

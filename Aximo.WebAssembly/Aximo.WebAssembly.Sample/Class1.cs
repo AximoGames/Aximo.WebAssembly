@@ -9,19 +9,27 @@ namespace Aximo.WebAssembly.Sample
     {
         public static void Run()
         {
+            StartTime = DateTime.Now;
             Console.WriteLine("Hello from C#!");
 
             Runtime.InvokeJS("Interop.appendResult('dddd')", out _);
-            //var el = Browser.GetElementById("results");
-            //Console.WriteLine("TAG:" + el.TagName);
-            //el.SetClick((e) =>
-            //{
-            //    Console.WriteLine("abc");
-            //});
 
+            DomTest();
             var tim = new Timer((e) => Test2());
             tim.Change(TimeSpan.FromSeconds(.1), TimeSpan.FromSeconds(1));
         }
+
+        private static void DomTest()
+        {
+            var el = Browser.GetElementById("results");
+            Console.WriteLine("TAG:" + el.TagName);
+            el.SetClick((e) =>
+            {
+                Console.WriteLine("abc");
+            });
+        }
+
+        private static DateTime StartTime;
 
         private static void Test2()
         {
@@ -36,6 +44,11 @@ namespace Aximo.WebAssembly.Sample
 
             //GC.Collect(GC.MaxGeneration);
             Runtime.FreeHandles();
+
+            if ((DateTime.Now - StartTime).TotalSeconds > 10)
+            {
+                DomTest();
+            }
         }
 
         private static void Test()

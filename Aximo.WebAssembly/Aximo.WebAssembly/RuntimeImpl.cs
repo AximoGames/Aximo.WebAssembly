@@ -34,7 +34,9 @@ namespace WebAssembly
         {
             if (!code.StartsWith("return "))
                 code = "return " + code;
-            var reference = InvokeJS($"Interop.getObject('{code.Replace("'", "\\'")}')", out _);
+            code = $"Interop.getObject('{code.Replace("'", "\\'")}')";
+            Console.WriteLine("GetObject:" + code);
+            var reference = InvokeJS(code, out _);
             return JsToken.Parse(reference);
         }
 
@@ -91,7 +93,8 @@ namespace WebAssembly
         private JsToken CreateWasmHandle(object wasmObject)
         {
             var handle = wasmObject.GetHashCode(); // TODO: GetHashCode ok?
-            WasmHandles.Add(handle, wasmObject);
+            if (!WasmHandles.ContainsKey(handle))
+                WasmHandles.Add(handle, wasmObject);
             return new JsNumber(handle);
         }
 
@@ -135,9 +138,11 @@ namespace WebAssembly
             if (tryCast != null)
                 return tryCast;
 
-            if (tryCast.IsReferenceType)
+            if (obj.IsReferenceType)
             {
-                //tryCast = 
+                var handle = (obj as JsReference).Handle;
+                tryCast = Activator.CreateInstance<TRef>();
+                (tryCast as JsReference).Handle = handle;
             }
 
             return tryCast;

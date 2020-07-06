@@ -21,7 +21,7 @@ namespace Aximo.WebAssembly.Interop
         public static TRef GetObject<TRef>(string code)
             where TRef : JsToken
         {
-            return CastObject<TRef>(GetObject<TRef>(code));
+            return CastObject<TRef>(GetObject(code));
         }
 
         public static JsArrayReference GetArray(string code)

@@ -5,7 +5,11 @@ namespace Aximo.WebAssembly.Interop.Browser
 {
     public class JsDomReference : JsObject
     {
-        internal JsDomReference(string handle) : base(handle, JsType.Element)
+        public JsDomReference(string handle) : base(handle, JsType.Element)
+        {
+        }
+
+        public JsDomReference() : base(null, JsType.Element)
         {
         }
 

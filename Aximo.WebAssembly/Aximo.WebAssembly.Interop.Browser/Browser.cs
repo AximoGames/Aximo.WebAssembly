@@ -8,6 +8,8 @@ namespace Aximo.WebAssembly.Interop.Browser
     {
         public static JsDomReference GetElementById(string id)
         {
+            //return Runtime.GetObject<JsDomReference>($"document.getElementById('{id}')");
+            //Console.WriteLine($"document.getElementById('{id}')");
             return Runtime.GetObject<JsDomReference>($"document.getElementById('{id}')");
         }
     }
